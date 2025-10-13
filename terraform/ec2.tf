@@ -19,14 +19,6 @@ resource "aws_security_group" "allow_user_to_connect" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress {
-    description = " allow all outgoing traffic "
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   ingress {
     description = "port 80 allow"
     from_port   = 80
@@ -40,6 +32,72 @@ resource "aws_security_group" "allow_user_to_connect" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ingress {
+description = "SMTP Port Allow"
+from_port   = 465
+to_port     = 465
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+description = "SMTP Port Allow"
+from_port   = 25
+to_port     = 25
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+description = "Kubernetes NodePort"
+from_port   = 30000
+to_port     = 32767
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+
+ingress {
+description = "Kubernetes NodePort"
+from_port   = 30000
+to_port     = 32767
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+description = "Redis Port"
+from_port   = 6379
+to_port     = 6379
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+description = "Kube API Server"
+from_port   = 6379
+to_port     = 6379
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+description = "Web Apllication Port"
+from_port   = 3000
+to_port     = 10000
+protocol    = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+
+egress {
+    description = " allow all outgoing traffic "
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
